@@ -44,18 +44,6 @@ SimpleStateMachine
   stateMachine.event("searchButtonClick");
   stateMachine.event("cancelButtonClick");
 
-
-  NOTE: you can add a "base" state to define default handlers for all states, i.e.,
-  
-  base:{
-    enterState:function(){
-      console.log("base handler for all enterState events, can be overridden (or even extended)");
-    },
-    searchButton:function(){
-      console.log("base handler:searchButton");
-    }
-  }
-
 Credits: thewizardmaster, okredo
 *
 */
