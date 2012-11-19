@@ -9,7 +9,7 @@ SimpleStateMachine
   stateMachine = new SimpleStateMachine({
     rest:{
       enterState:function(){
-        trace("REST");
+        console.log("REST");
       },
       searchButtonClick:function(){
         stateMachine.transition("searching");
@@ -17,10 +17,10 @@ SimpleStateMachine
     },
     searching:{
       enterState:function(){
-        trace("SEARCHING");
+        console.log("SEARCHING");
       },
       exitState:function(){
-        trace("not searching");
+        console.log("not searching");
       },
       searchButtonClick:function(){
         stateMachine.transition("paused");
@@ -31,7 +31,7 @@ SimpleStateMachine
     },
     paused:{
       enterState:function(){
-        trace("PAUSED");
+        console.log("PAUSED");
       },
       searchButtonClick:function(){
         stateMachine.transition("searching");
@@ -52,10 +52,10 @@ SimpleStateMachine
 
   base:{
     enterState:function(){
-      trace("base handler for all enterState events, can be overridden (or even extended)");
+      console.log("base handler for all enterState events, can be overridden (or even extended)");
     },
     searchButton:function(){
-      trace("base handler:searchButton");
+      console.log("base handler:searchButton");
     }
   }
 *
