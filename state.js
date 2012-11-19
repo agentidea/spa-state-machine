@@ -1,5 +1,6 @@
 /* 
  *
+(Credit: wizard master)
 
 SimpleStateMachine
   example:
@@ -61,10 +62,9 @@ SimpleStateMachine
 */
 
 //----------------------------------------------------- 
-function SimpleStateMachine(handlers, startState, _context, _node){
+function SimpleStateMachine(handlers, startState, _context){
   this._handlers = handlers;
   this._context = _context;
-  this._node = _node;
   this.transition(startState);
 }
 //----------------------------------------------------- 
@@ -78,14 +78,12 @@ SimpleStateMachine.prototype.event = function(eventName, _eventData){
 SimpleStateMachine.prototype.transition = function(newState){
   // exit previous state
   if(this._currentState) console.log("exit state "+this._currentState);
-  if(this._node) jQuery(this._node).removeClass( this._currentState );
   var handler = this._getHandler("exitState");
   if(handler) handler.call(this._context);
   // set state
   this._currentState = newState;
   // enter new state
   console.log("enter state "+this._currentState);
-  if(this._node) jQuery(this._node).addClass( this._currentState );
   var handler = this._getHandler("enterState");
   if(handler) handler.call(this._context);
 }
