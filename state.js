@@ -1,15 +1,13 @@
 /* 
  *
-(Credit: wizard master)
-
 SimpleStateMachine
   example:
 
  // create it:
   stateMachine = new SimpleStateMachine({
-    rest:{
+    start:{
       enterState:function(){
-        console.log("REST");
+        console.log("START");
       },
       searchButtonClick:function(){
         stateMachine.transition("searching");
@@ -26,7 +24,7 @@ SimpleStateMachine
         stateMachine.transition("paused");
       },
       cancelButtonClick:function(){
-        stateMachine.transition("rest");
+        stateMachine.transition("start");
       },
     },
     paused:{
@@ -37,19 +35,18 @@ SimpleStateMachine
         stateMachine.transition("searching");
       },
       cancelButtonClick:function(){
-        stateMachine.transition("rest");
+        stateMachine.transition("start");
       },
     }
-  }, "rest", this);
+  }, "start", this);
 
   // use it:
   stateMachine.event("searchButtonClick");
   stateMachine.event("cancelButtonClick");
 
 
-  NOTE: you can add a "base" state to define default handlers for all states
-  i.e.
-
+  NOTE: you can add a "base" state to define default handlers for all states, i.e.,
+  
   base:{
     enterState:function(){
       console.log("base handler for all enterState events, can be overridden (or even extended)");
@@ -58,6 +55,8 @@ SimpleStateMachine
       console.log("base handler:searchButton");
     }
   }
+
+Credits: thewizardmaster, okredo
 *
 */
 
@@ -76,19 +75,21 @@ SimpleStateMachine.prototype.event = function(eventName, _eventData){
 }
 //----------------------------------------------------- 
 SimpleStateMachine.prototype.transition = function(newState){
-  // exit previous state
+  // Exit previous state
   if(this._currentState) console.log("exit state "+this._currentState);
   var handler = this._getHandler("exitState");
   if(handler) handler.call(this._context);
-  // set state
+  
+  // Set state
   this._currentState = newState;
-  // enter new state
+  
+  // Enter new state
   console.log("enter state "+this._currentState);
   var handler = this._getHandler("enterState");
   if(handler) handler.call(this._context);
 }
 //----------------------------------------------------- 
-// return the current state handler for the event
+// Return the current state handler for the event
 // or if there isn't one and there is a base state handler
 // defined, return the base state handler
 SimpleStateMachine.prototype._getHandler = function(eventName){
