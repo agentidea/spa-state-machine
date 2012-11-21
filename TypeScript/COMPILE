@@ -1,2 +1,10 @@
-tsc *.ts
+SPA Demo Installation Steps:
 
+1) npm install -g typescript
+
+2) cd ${project-root}/TypeScript
+
+3) tsc *.ts
+(if you're online it's probably safe to ignore the jQuery errors)
+
+4) Browse to index.html
