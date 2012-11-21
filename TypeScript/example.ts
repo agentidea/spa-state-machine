@@ -1,7 +1,7 @@
 ///<reference path="state.ts" />
 
-// SimpleStateMachine example:   
-var stateMachine = new State.SimpleStateMachine({
+// StateMachine example:   
+var stateMachine = new State.StateMachine({
     rest:{
       enterState:function(){
         console.log("REST");
@@ -17,7 +17,7 @@ var stateMachine = new State.SimpleStateMachine({
     },
     clean: {
       enterState:function(){
-        console.log("logging in ...");
+        console.log("logging in...");
         $("#txtBox").val("in clean state");
         $('#cmdLogin').hide();
         $('#cmdSave').show();
@@ -37,7 +37,7 @@ var stateMachine = new State.SimpleStateMachine({
 
     saving:{
       enterState:function(){
-        $("#txtBox").val("saving ...");
+        $("#txtBox").val("saving... Note: Exit disabled in this state");
         console.log("saving");
       },
       exitState:function(){

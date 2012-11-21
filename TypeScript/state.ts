@@ -1,7 +1,7 @@
 //state.ts derived from TypeScript/../state.js
 ///<reference path="jquery.d.ts" />
 module State {
-  export class SimpleStateMachine {
+  export class StateMachine {
   
   private _handlers : any;
   private _context : any;
